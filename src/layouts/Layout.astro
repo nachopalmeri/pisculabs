@@ -1,0 +1,185 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Páginas web, sistemas a medida y bots. Sin tecnicismos. Zona sur, Buenos Aires. Primera consulta gratis." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta name="author" content="Pisculichi Labs" />
+	<meta name="robots" content="index, follow" />
+	
+	<link rel="canonical" href="https://pisculichilabs.com/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://pisculichilabs.com/" />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111111'/><text y='24' x='4' font-size='22' font-family='monospace' fill='%2300FF99'>P</text></svg>" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+	
+	<meta name="referrer" content="strict-origin-when-cross-origin" />
+	
+	<script is:inline>
+		document.documentElement.classList.add('js');
+	</script>
+</head>
+<body>
+	<canvas id="bg-canvas"></canvas>
+	<div class="mouse-light" id="mlight"></div>
+	<slot />
+	
+	<script>
+		// Setup de animaciones con Intersection Observer
+		if('IntersectionObserver' in window){
+		  const io = new IntersectionObserver(entries => {
+			entries.forEach(e => {
+			  if(e.isIntersecting){
+				e.target.classList.add('in');
+				io.unobserve(e.target);
+			  }
+			})
+		  }, {threshold: 0.1, rootMargin: "0px 0px -50px 0px"});
+		  
+		  document.querySelectorAll('.sr').forEach(el => {
+			if(el.closest('#hero') || el.closest('.page-header')){
+				// Stagger de hero forzado
+				setTimeout(() => { el.classList.add('in') }, 50);
+			} else {
+				io.observe(el);
+			}
+		  });
+		  setTimeout(() => document.querySelectorAll('.sr:not(.in)').forEach(el => el.classList.add('in')), 1500);
+		} else {
+		  document.querySelectorAll('.sr').forEach(el => el.classList.add('in'));
+		}
+		
+		// Mouse Light tracking y Magnetic Buttons
+		const mlight = document.getElementById('mlight');
+		if (mlight) {
+			document.documentElement.classList.add('js-ready');
+			document.addEventListener('mousemove', (e) => {
+				// Utilizando transform translate3d para renderizado a 60fps (Hardware acceleration)
+				mlight.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+			}, {passive: true});
+		}
+
+		// Botones Magnéticos
+		document.querySelectorAll('.btn').forEach(btn => {
+			btn.addEventListener('mousemove', (e) => {
+				const rect = btn.getBoundingClientRect();
+				const x = e.clientX - rect.left - rect.width / 2;
+				const y = e.clientY - rect.top - rect.height / 2;
+				btn.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`;
+			});
+			btn.addEventListener('mouseleave', () => {
+				btn.style.transform = `translate(0px, 0px)`;
+			});
+		});
+
+		// Global Constellation Particle Network
+		const canvas = document.getElementById('bg-canvas');
+		if (canvas) {
+			const ctx = canvas.getContext('2d');
+			let width, height;
+			let particles = [];
+			let lastTime = 0;
+			
+			// Mouse target
+			const mouse = { x: -1000, y: -1000 };
+			document.addEventListener('mousemove', (e) => {
+				mouse.x = e.clientX;
+				mouse.y = e.clientY;
+			}, {passive: true});
+
+			function init() {
+				width = canvas.width = window.innerWidth;
+				height = canvas.height = window.innerHeight;
+				particles = [];
+				const count = Math.min((width * height) / 18000, 80); // Responsive particle count
+				for (let i = 0; i < count; i++) {
+					particles.push({
+						x: Math.random() * width,
+						y: Math.random() * height,
+						vx: (Math.random() - 0.5) * 0.4,
+						vy: (Math.random() - 0.5) * 0.4,
+						s: Math.random() * 1.5 + 0.5,
+						z: Math.random() * 2 // Pseudo 3D depth
+					});
+				}
+			}
+			init();
+			window.addEventListener('resize', init, {passive: true});
+			
+			function draw(time) {
+				const deltaTime = time - lastTime;
+				lastTime = time;
+				
+				// Optional: Clear with faint opacity to create trails, or fully clear
+				ctx.clearRect(0, 0, width, height);
+
+				// Draw lines between nearby particles and mouse
+				for (let i = 0; i < particles.length; i++) {
+					const p = particles[i];
+
+					// Parallax Mouse Effect
+					const dx = mouse.x - p.x;
+					const dy = mouse.y - p.y;
+					const distToMouse = Math.hypot(dx, dy);
+					
+					// Repulsion / Gravitation interaction
+					if (distToMouse < 150) {
+						p.x -= (dx / distToMouse) * 0.5;
+						p.y -= (dy / distToMouse) * 0.5;
+					}
+
+					p.x += p.vx * p.z; // Depth-based speed parallax
+					p.y += p.vy * p.z;
+					
+					// Wrap boundaries
+					if (p.x < -50) p.x = width + 50;
+					if (p.x > width + 50) p.x = -50;
+					if (p.y < -50) p.y = height + 50;
+					if (p.y > height + 50) p.y = -50;
+					
+					// Draw star dot
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+					ctx.fillStyle = `rgba(255, 255, 255, ${0.1 * p.z})`; // Dimmer if further away
+					ctx.fill();
+					
+					// Constellation links
+					for (let j = i + 1; j < particles.length; j++) {
+						const p2 = particles[j];
+						const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+						if (dist < 120) {
+							// Parallax intensity depending on average Z
+							const avgZ = (p.z + p2.z) / 2;
+							ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - dist/120) * avgZ})`;
+							ctx.beginPath();
+							ctx.moveTo(p.x, p.y);
+							ctx.lineTo(p2.x, p2.y);
+							ctx.stroke();
+						}
+					}
+				}
+				requestAnimationFrame(draw);
+			}
+			requestAnimationFrame(draw);
+		}
+	</script>
+</body>
+</html>

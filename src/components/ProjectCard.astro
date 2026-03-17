@@ -1,0 +1,197 @@
+---
+interface Props {
+  id: string;
+  category: string;
+  namePrefix: string;
+  nameHighlight: string;
+  desc: string;
+  price: string;
+  link: string;
+  imageUrl?: string;
+}
+
+const { id, category, namePrefix, nameHighlight, desc, price, link, imageUrl } = Astro.props;
+---
+
+<div class="proj-card sr" data-tilt>
+  {imageUrl && (
+    <div class="proj-card-img">
+      <img src={imageUrl} alt={`Captura de ${namePrefix} ${nameHighlight}`} loading="lazy" onerror="this.style.opacity='0.1'; this.style.filter='grayscale(100%)';" />
+    </div>
+  )}
+  <div class="proj-card-content">
+    <div class="proj-card-cat">{category}</div>
+    <h3 class="proj-card-name">{namePrefix}<span>{nameHighlight}</span></h3>
+    <p class="proj-card-desc">{desc}</p>
+    <div class="proj-card-price">{price}</div>
+    <a class="proj-card-link" href={link} target="_blank" rel="noopener">Ver demo en vivo</a>
+  </div>
+</div>
+
+<style>
+.proj-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-out, box-shadow 0.4s var(--ease-spring), border-color 0.4s, background 0.4s;
+  position: relative;
+  overflow: hidden;
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0) scale(1);
+  transform-style: preserve-3d;
+}
+
+.proj-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.proj-card:hover {
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 50px -15px var(--violet-glow), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(139, 92, 246, 0.6);
+  z-index: 10;
+}
+.proj-card:hover::before { opacity: 1; }
+
+.proj-card-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 1;
+}
+.proj-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo), opacity 0.3s;
+}
+.proj-card:hover .proj-card-img {
+  transform: translateZ(20px);
+  z-index: 2;
+}
+.proj-card:hover .proj-card-img img {
+  transform: scale(1.05);
+}
+
+.proj-card-content {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  transform: translateZ(0px);
+  transition: transform 0.4s var(--ease-spring);
+}
+.proj-card:hover .proj-card-content {
+  transform: translateZ(40px);
+}
+
+.proj-card-cat {
+  font-family: var(--f-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 12px;
+}
+
+.proj-card-name {
+  font-family: var(--f-hero);
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin-bottom: 12px;
+  color: var(--text);
+  text-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+.proj-card-name span { color: var(--green); }
+
+.proj-card-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.proj-card-price {
+  font-family: var(--f-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: .05em;
+  margin-bottom: 16px;
+  display: inline-flex;
+  padding: 4px 10px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  align-self: flex-start;
+  border-radius: 4px;
+}
+
+.proj-card-link {
+  font-family: var(--f-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--violet);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 6px;
+  margin-top: 8px;
+  align-self: stretch;
+  text-align: center;
+  transition: all 0.3s var(--ease-spring);
+  border: 1px solid transparent;
+}
+.proj-card-link::after { content: '↗'; transition: transform 0.3s var(--ease-spring); font-size: 16px; margin-top: -2px; }
+.proj-card-link:hover { background: #9d75f8; transform: translateY(-2px); box-shadow: 0 10px 20px -5px var(--violet-glow); }
+.proj-card-link:hover::after { transform: translate(4px, -4px); }
+</style>
+
+<script>
+  // 3D Tilt Effect for Project Cards
+  const cards = document.querySelectorAll('.proj-card[data-tilt]');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e: any) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Calculate rotation (max 6 degrees)
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      
+      (card as HTMLElement).style.setProperty('--rx', `${rotateX}deg`);
+      (card as HTMLElement).style.setProperty('--ry', `${rotateY}deg`);
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      (card as HTMLElement).style.setProperty('--rx', `0deg`);
+      (card as HTMLElement).style.setProperty('--ry', `0deg`);
+    });
+  });
+</script>

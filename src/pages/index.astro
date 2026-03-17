@@ -1,0 +1,938 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import proyectosData from '../data/proyectos.json';
+
+// Tomamos todos los que NO tienen la propiedad hideInHome y lo limitamos a los primeros 3 (Igual que en la original)
+const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
+---
+
+<Layout title="Pisculichi Labs — Software a medida para cualquier idea">
+  <Navbar />
+  
+  <section id="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-terminal sr">
+            <span class="prompt">></span> root@pisculichi_labs:~# <span class="typing">deploy_reality.sh</span><span class="cursor">_</span>
+          </div>
+          <div class="hero-title sr d1">
+            <div>¿Tenés una idea?</div>
+            <div class="ht-solid">La hacemos</div>
+            <div class="ht-outline">realidad.</div>
+          </div>
+          <p class="hero-sub sr d2">Nuestra especialidad: <strong>Tu página web atractiva conectada a un sistema moderno de Ventas y Stock (POS)</strong>. Gestioná tu comercio fácilmente, sin vueltas y sin tecnicismos.</p>
+          <div class="hero-actions sr d3">
+            <a href="#contacto" class="btn btn-v btn-big">Contame tu idea <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="/proyectos" class="btn btn-o">Ver qué hicimos</a>
+          </div>
+          <div class="hero-stats sr d4">
+            <div class="hstat"><div class="hstat-num">100<span>%</span></div><div class="hstat-label">A medida, para vos</div></div>
+            <div class="hstat"><div class="hstat-num">&lt;48<span>hs</span></div><div class="hstat-label">Respuesta garantizada</div></div>
+            <div class="hstat"><div class="hstat-num">0</div><div class="hstat-label">Tecnicismos, prometido</div></div>
+          </div>
+        </div>
+
+        <div class="hero-graphic sr d2">
+          <svg viewBox="0 0 400 300" class="growth-chart">
+            <defs>
+              <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00FF99" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="#00FF99" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 50 L400 50 M0 100 L400 100 M0 150 L400 150 M0 200 L400 200 M0 250 L400 250" class="chart-grid" />
+            <line x1="0" y1="280" x2="400" y2="280" class="chart-axis" />
+            <line x1="20" y1="0" x2="20" y2="300" class="chart-axis" />
+            <path d="M20 280 Q 80 280 120 200 T 220 120 T 320 60 T 400 20" class="chart-line" />
+            <circle cx="120" cy="200" r="4" class="chart-dot d-1" />
+            <circle cx="220" cy="120" r="4" class="chart-dot d-2" />
+            <circle cx="320" cy="60" r="4" class="chart-dot d-3" />
+            <circle cx="400" cy="20" r="6" class="chart-dot final-dot d-4" />
+            <path d="M20 280 Q 80 280 120 200 T 220 120 T 320 60 T 400 20 L400 280 Z" class="chart-fill" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problema">
+    <div class="wrap">
+      <div class="prob-grid">
+        <div class="prob-left sr">
+          <div class="eyebrow">¿Te suena familiar?</div>
+          <h2 class="s-title">Si lo podés<br/><span>explicar,</span><br/>lo construimos.</h2>
+          <p class="prob-desc">No hace falta que sepas nada de tecnología. Solo contarnos qué necesitás con tus palabras &mdash; nosotros nos encargamos del resto.</p>
+          <a href="#contacto" class="btn btn-v" style="margin-bottom:14px">Mandar mi idea <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <p class="prob-note">Primera consulta gratis, sin compromiso.</p>
+        </div>
+        <div class="pain-list sr d1">
+          <div class="pain-item"><div class="pain-text"><strong>Hacés la quiniela con los pibes en papel</strong><span>Calcular puntos, el pozo, la tabla &mdash; todo a mano. Eso tiene solución digital.</span></div></div>
+          <div class="pain-item"><div class="pain-text"><strong>Tu negocio no tiene página o está abandonada</strong><span>Sin presencia digital, no existís para la mitad de tus clientes potenciales.</span></div></div>
+          <div class="pain-item"><div class="pain-text"><strong>Vendés por Instagram pero perdés pedidos</strong><span>Todo en el chat, nada organizado. Siempre algo se pierde o se olvida.</span></div></div>
+          <div class="pain-item"><div class="pain-text"><strong>Sos profesional sin mostrarte online</strong><span>Tu trabajo merece una presentación digital seria y fácil de encontrar.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="svc-header">
+        <div class="sr"><div class="eyebrow">Lo que hacemos</div><h2 class="s-title">Tres cosas que<br/>cambian tu día</h2></div>
+        <div class="sr d1"><a href="#contacto" class="btn btn-o">Consultar mi caso &#x2192;</a></div>
+      </div>
+      <div class="svc-list">
+        <div class="svc-row sr d1">
+          <div class="svc-n">01.</div>
+          <div class="svc-content">
+            <div class="eyebrow" style="margin-bottom: 8px;">El más pedido</div>
+            <h3 class="svc-t">Combo: Landing Page + Sistema POS</h3>
+            <p class="svc-d">Tu vidriera para atraer clientes online <strong>y un sistema en la nube (Punto de Venta) para administrar tu comercio internamente.</strong> Controlá tu stock en tiempo real, registrá ventas, administrá clientes y mirá reportes desde tu celular o tablet. Fácil y sin instalaciones.</p>
+            <div class="svc-example">&ldquo;Atraigo clientes con la web y proceso los pagos y stock desde el sistema en mi celular.&rdquo;</div>
+          </div>
+        </div>
+        <div class="svc-row sr d2">
+          <div class="svc-n">02.</div>
+          <div class="svc-content">
+            <h3 class="svc-t">Sistemas a medida o E-commerce</h3>
+            <p class="svc-d">¿Usás Excel para todo o anotás en cuadernos? Te armamos un sistema privado o una tienda online profesional. <strong>Ordená tu negocio y trabajá más tranquilo.</strong></p>
+            <div class="svc-example">&ldquo;Antes perdía horas contando mercadería. Ahora el sistema me avisa qué falta comprar.&rdquo;</div>
+          </div>
+        </div>
+        <div class="svc-row sr d3">
+          <div class="svc-n">03.</div>
+          <div class="svc-content">
+            <h3 class="svc-t">Bots y Automatización</h3>
+            <p class="svc-d">¿Respondés siempre las mismas preguntas por WhatsApp o Mail? Un asistente automático lo hace por vos, las 24 horas. <strong>Ahorrá tiempo y no pierdas ventas.</strong></p>
+            <div class="svc-example">&ldquo;El bot responde precios y toma pedidos. Yo solo entro a cocinar y entregar.&rdquo;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="proj-intro sr">
+        <div>
+          <div class="eyebrow">Mirá lo que ya construimos</div>
+          <h2 class="s-title">Proyectos reales.<br/>Tocá y probálos hoy.</h2>
+          <p class="proj-instruct" style="color: var(--text-2); margin-top: 16px; font-size: 18px;">Todas estas tarjetas tienen un sistema vivo detrás. <strong style="color: var(--green);">Hacé clic en "Ver demo en vivo"</strong> para interactuar con casos de éxito reales o ver cómo funcionan.</p>
+        </div>
+        <a href="/proyectos" class="btn btn-o">Ver todos los proyectos &#x2192;</a>
+      </div>
+      <div class="proj-preview-grid">
+        {homeProjects.map((proj) => (
+          <ProjectCard 
+            id={proj.id}
+            category={proj.categories.join(' · ')}
+            namePrefix={proj.titlePrefix}
+            nameHighlight={proj.titleHighlight}
+            desc={proj.previewDesc}
+            price={proj.previewCost}
+            link={proj.link}
+            imageUrl={proj.imageUrl}
+          />
+        ))}
+      </div>
+      <div class="proj-footer sr">
+        <div class="proj-footer-note"><span>&#x2139;</span>  <strong>Importante:</strong> Los precios son *desde* un monto referencial base. El presupuesto final siempre dependerá de la complejidad de tu caso, el tiempo de desarrollo, APIs de terceros que necesites y requerimientos específicos.</div>
+        <a href="/proyectos" class="btn btn-o">Ver el catálogo completo ({proyectosData.length} proyectos) &#x2192;</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sr"><div class="eyebrow">Preguntas frecuentes</div><h2 class="s-title">Lo que todos<br/>preguntan antes</h2></div>
+      <div class="faq-grid">
+        <div class="faq-item sr d1"><div class="faq-q">¿Necesito saber de tecnología?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Para nada. Contános la idea como se la contarías a un amigo. Nosotros hacemos las preguntas técnicas.</div></div>
+        <div class="faq-item sr d2"><div class="faq-q">¿Los precios del catálogo son fijos?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">No, son tarifas base referenciales. Cada producto se cotiza a medida según la complejidad de tus reglas de negocio, el diseño, la urgencia de entrega y las herramientas externas (APIs, bases de datos) que necesitemos usar.</div></div>
+        <div class="faq-item sr d1"><div class="faq-q">¿Cuánto tarda en estar listo?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Una página web sencilla: 1 semana. Un sistema más completo: 3 a 4 semanas. Te damos el tiempo estimado y lo cumplimos.</div></div>
+        <div class="faq-item sr d2"><div class="faq-q">¿Lo que construyen queda en mis manos?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Sí, todo es tuyo &mdash; el código, los datos, los accesos. No dependés de nosotros para nada después de la entrega.</div></div>
+        <div class="faq-item sr d1"><div class="faq-q">¿Qué pasa si algo falla después?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Todos los proyectos incluyen 30 días de soporte post-entrega. Si algo no funciona como acordamos, lo arreglamos sin costo.</div></div>
+        <div class="faq-item sr d2"><div class="faq-q">¿Puedo pedir cambios durante el desarrollo?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Sí. Trabajamos mostrándote avances. Si algo no te convence, lo ajustamos antes de seguir. Sin sorpresas al final.</div></div>
+        <div class="faq-item sr d1"><div class="faq-q">¿Cómo se paga el trabajo?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Nos adaptamos a tu negocio. Aceptamos Mercado Pago, transferencias e incluso criptomonedas (USDT). Además, la idea es que el sistema o la web empiece a rendirte frutos lo antes posible.</div></div>
+        <div class="faq-item sr d2"><div class="faq-q">¿Con quién hablo si tengo dudas?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4v12M4 10h12"/></svg></div><div class="faq-a">Nada de "tickets de soporte automáticos" ni bots que te hacen perder el tiempo. Hablás directo y personalmente con nosotros por WhatsApp. Queremos ser tu contacto técnico de confianza, siempre cerca tuyo.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <canvas id="cta-canvas" class="cta-canvas"></canvas>
+    <div class="wrap"><div class="cta-inner sr">
+      <div class="eyebrow" style="justify-content:center">LA GRAN OFERTA</div>
+      <h2 class="cta-title">Combo <span>Digital Total</span>.</h2>
+      <p class="cta-sub">Tu propia **Página Web** atractiva para sumar clientes + un **Sistema POS Profesional** (Ventas, Stock, Fiados) para modernizar la atención de tu comercio. Todo por **~$1.000.000 ARS**.</p>
+      
+      <div class="cta-feature-list">
+        <span>✓ Web Profesional</span>
+        <span>✓ Sistema de Stock</span>
+        <span>✓ Catálogo/Ventas</span>
+        <span>✓ Reportes</span>
+      </div>
+
+      <div class="cta-btns">
+        <a href="https://wa.me/5491100000000?text=Hola%2C+quiero+saber+mas+del+Combo+Digital+Total+de+1+Millon" target="_blank" rel="noopener" class="btn btn-wsp btn-big"><svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Reservar mi Combo por WhatsApp</a>
+        <a href="#contacto" class="btn btn-o btn-big">Hacer una consulta &#x2192;</a>
+      </div>
+      <p class="cta-note">Aceptamos transferencias y Mercado Pago. Consulta gratis.</p>
+    </div></div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap"><div class="c-grid">
+      <div class="sr">
+        <div class="eyebrow">Contacto</div>
+        <h2 class="c-title">Contános<br/>tu <span>idea</span>.</h2>
+        <p class="c-body">No hace falta que sepas lo que querés técnicamente. Describínos la situación con tus palabras y nosotros te decimos cómo resolverlo.</p>
+        <div class="c-links">
+          <div class="c-link"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">WhatsApp &mdash; respuesta rápida</a></div>
+        <div class="c-link"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:hola@pisculichilabs.com">hola@pisculichilabs.com</a></div>
+        </div>
+        <div class="c-guarantee"><span>&#x1F512;</span><p><strong>Sin presión, sin compromiso.</strong> La primera consulta es gratuita. Si no es para vos, no pasa nada.</p></div>
+      </div>
+      <div class="sr d1">
+        <form class="form" id="cForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="iNombre">Nombre</label><input id="iNombre" type="text" placeholder="Tu nombre" autocomplete="name"/><span class="ferr" id="eNombre" aria-live="polite">Campo requerido</span></div>
+            <div class="field"><label for="iEmail">Email</label><input id="iEmail" type="email" placeholder="tu@email.com" autocomplete="email"/><span class="ferr" id="eEmail" aria-live="polite">Email inválido</span></div>
+          </div>
+          <div class="field"><label for="iTipo">¿Qué necesitás?</label><select id="iTipo"><option value="">Elegí una opción&hellip;</option><option value="web">Una página web para mi negocio</option><option value="sistema">Un sistema a medida (stock, turnos, pedidos&hellip;)</option><option value="personal">Algo personal (tracker, organizador&hellip;)</option><option value="bot">Un bot que responda preguntas por mí</option><option value="otro">Otra cosa &mdash; lo explico abajo</option></select></div>
+          <div class="field"><label for="iMsg">Contános con tus palabras</label><textarea id="iMsg" rows="4" placeholder="Ej: 'Tengo una fiambrera y no tengo página' / 'Quiero trackear mi rutina del gym' / 'Soy contador y necesito algo para mis clientes'&hellip;"></textarea><span class="ferr" id="eMsg" aria-live="polite">Contános algo, aunque sea poco</span></div>
+  
+          <div class="hp" aria-hidden="true" style="opacity: 0; position: absolute; top: -9999px"><label>No rellenar <input type="text" name="_hp_website" tabindex="-1" autocomplete="off"/></label></div>
+          <div class="f-foot">
+            <button type="submit" class="btn btn-v btn-big" id="fBtn">Mandar consulta <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+            <span class="f-note">O escribínos por WhatsApp &#x2191;</span>
+          </div>
+          <div class="f-ok" id="fOk" aria-live="polite"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Consulta recibida. Te escribo pronto.</div>
+        </form>
+      </div>
+    </div></div>
+  </section>
+  <Footer />
+</Layout>
+
+<script>
+  // Script Local del Formulario y FAQ extraidos a cliente
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!open) item.classList.add('open')
+    })
+  });
+
+  const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID || 'TU_FORM_ID';
+  const FORM_READY = FORMSPREE_ID !== 'TU_FORM_ID';
+  const form = document.getElementById('cForm');
+  const fBtn = document.getElementById('fBtn');
+  const fOk = document.getElementById('fOk');
+  
+  function chk(id, eId, fn){
+    const el = document.getElementById(id);
+    const er = document.getElementById(eId);
+    if (!el) return false;
+    const ok = fn(el.value.trim());
+    el.classList.toggle('err', !ok);
+    if(er) er.classList.toggle('show', !ok);
+    return ok;
+  }
+  
+  if (form && fBtn && fOk) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const honeypot = document.querySelector('[name="_hp_website"]');
+      if(honeypot && honeypot.value) return; // Spam
+      
+      const v1 = chk('iNombre', 'eNombre', v => v.length >= 2);
+      const v2 = chk('iEmail', 'eEmail', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+      const v3 = chk('iMsg', 'eMsg', v => v.length >= 8);
+      
+      if(!v1 || !v2 || !v3) return;
+      
+      fBtn.disabled = true;
+      fBtn.textContent = 'Enviando…';
+      
+      const payload = {
+        name: document.getElementById('iNombre').value,
+        email: document.getElementById('iEmail').value,
+        type: document.getElementById('iTipo').value,
+        message: document.getElementById('iMsg').value
+      };
+      
+      if(FORM_READY){
+        try{
+          const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(payload)
+          });
+          if(!res.ok) throw new Error();
+        } catch {
+          fBtn.disabled = false;
+          fBtn.textContent = 'Reintentar';
+          return;
+        }
+      } else {
+        console.log('[dev]', payload);
+        await new Promise(r => setTimeout(r, 600));
+      }
+      
+      form.reset();
+      fBtn.style.display = 'none';
+      fOk.classList.add('show');
+    });
+    
+    ['iNombre', 'iEmail', 'iMsg'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) {
+        el.addEventListener('input', () => {
+          el.classList.remove('err');
+          const er = document.getElementById('e'+id.slice(1));
+          if(er) er.classList.remove('show')
+        });
+      }
+    });
+  }
+
+  // CTA Canvas Particles (Algorithmic Art)
+  const canvas = document.getElementById('cta-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    
+    function init() {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+      particles = [];
+      const count = width < 768 ? 40 : 100;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          s: Math.random() * 2 + 0.5
+        });
+      }
+    }
+    
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.5)'; // green
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Connect nearby
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 * (1 - dist/120)})`;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+    
+    window.addEventListener('resize', init);
+    
+    // Intersection observer to only run animation when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!particles.length) init();
+          draw();
+        }
+      });
+    }, { threshold:  0 });
+    observer.observe(document.getElementById('cta'));
+  }
+</script>
+
+<style>
+/* CSS REDISEÑO BRUTALISTA / NEO-TECHNO */
+#hero {
+  min-height: 60vh; /* Se achicó significativamente a pedido del usuario */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 120px;
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-content {
+  flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+}
+
+/* Efecto Terminal Hacker (Delight) */
+.hero-terminal {
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 50, 20, 0.2);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), inset 0 0 10px rgba(16, 185, 129, 0.05);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s var(--ease-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)), box-shadow 0.3s var(--ease-spring, cubic-bezier(0.175, 0.885, 0.32, 1.275)), border-color 0.3s;
+}
+.hero-terminal:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.25), inset 0 0 15px rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.8);
+}
+.hero-terminal .prompt { color: var(--green); font-weight: 700; }
+.hero-terminal .typing { color: var(--text); }
+.hero-terminal .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: var(--green);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Gráfico Dinámico - Draw SVG */
+.hero-graphic {
+  flex: 0.8;
+  min-width: 320px;
+  max-width: 450px;
+  position: relative;
+}
+.hero-graphic::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 140%; height: 140%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+.growth-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.chart-grid { stroke: rgba(255, 255, 255, 0.03); stroke-width: 1; fill: none; }
+.chart-axis { stroke: rgba(255, 255, 255, 0.1); stroke-width: 2; }
+.chart-line {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+}
+.chart-fill {
+  fill: url(#gg);
+  opacity: 0;
+  animation: fade-fill 1.5s ease-out forwards 1.8s;
+}
+.chart-dot {
+  fill: var(--bg);
+  stroke: var(--green);
+  stroke-width: 3;
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pop-dot 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.chart-dot.final-dot { fill: var(--green); filter: drop-shadow(0 0 10px var(--green)); }
+.chart-dot.d-1 { animation-delay: 1.2s; }
+.chart-dot.d-2 { animation-delay: 1.4s; }
+.chart-dot.d-3 { animation-delay: 1.6s; }
+.chart-dot.d-4 { animation-delay: 2.0s; }
+
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+@keyframes fade-fill { to { opacity: 1; } }
+@keyframes pop-dot { 0% { opacity: 0; transform: scale(0); } 100% { opacity: 1; transform: scale(1); } }
+.hero-badge {
+  display: inline-block;
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 2px solid var(--border);
+  background: var(--bg-1);
+  color: var(--text);
+  margin-bottom: 40px;
+  box-shadow: 4px 4px 0 var(--border);
+}
+
+.hero-title {
+  font-family: var(--f-hero);
+  font-size: clamp(48px, 9vw, 90px); /* Título más pequeño para reducir el Hero */
+  line-height: .9;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  text-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.ht-solid { color: var(--text); }
+.ht-outline { color: transparent; -webkit-text-stroke: 3px var(--violet); position: relative; }
+.ht-outline::after { content: 'realidad.'; position: absolute; left: 0; top: 0; color: var(--violet); filter: blur(25px); opacity: 0.8; z-index: -1; animation: pulse-glow-strong 2s ease-in-out infinite alternate; }
+@keyframes pulse-glow-strong { 0% { opacity: 0.5; filter: blur(20px); transform: scale(1); } 100% { opacity: 1; filter: blur(30px); transform: scale(1.02); } }
+@keyframes pulse-glow { 0% { opacity: 0.4; } 100% { opacity: 0.8; } }
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-2);
+  max-width: 580px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.hero-sub strong { color: var(--text); font-weight: 700; }
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.hero-stats {
+  display: flex;
+  max-width: 600px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.hstat {
+  flex: 1;
+  padding: 24px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+.hstat::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease-out-expo); }
+.hstat:hover::after { transform: scaleX(1); }
+.hstat:last-child { border-right: none; }
+.hstat-num {
+  font-family: var(--f-hero);
+  font-size: 42px;
+  color: var(--text);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+.hstat-label {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-top: 8px;
+}
+
+#problema { border-top: 1px solid var(--border); background: var(--bg-1); }
+.prob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+.prob-left .s-title { margin-bottom: 24px; }
+.prob-desc {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.prob-note {
+  font-family: var(--f-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: .08em;
+  margin-top: 16px;
+}
+.pain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pain-item {
+  display: flex;
+  align-items: stretch;
+  padding: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s var(--ease-spring), background 0.3s, border-color 0.3s;
+}
+.pain-item:hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 10px 40px -10px var(--violet-glow);
+}
+.pain-text strong {
+  display: block;
+  font-family: var(--f-hero);
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.pain-text span {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+#servicios { border-top: 1px solid var(--border); }
+.svc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.svc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.svc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  padding: 48px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 0 0 0 transparent;
+  transition: all 0.4s var(--ease-spring);
+}
+.svc-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: inset 4px 0 0 0 var(--green), 0 10px 40px -10px var(--green-glow);
+  transform: scale(1.01);
+}
+.svc-n {
+  font-family: var(--f-hero);
+  font-size: 48px;
+  color: var(--violet);
+  line-height: 0.9;
+}
+.svc-t {
+  font-family: var(--f-hero);
+  font-size: 42px;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.svc-d {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+.svc-example {
+  display: inline-block;
+  padding: 12px 16px;
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 2px solid var(--violet);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  font-style: italic;
+}
+
+#proyectos { border-top: 1px solid var(--border); background: var(--bg-1); }
+.proj-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.proj-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.proj-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 48px;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+}
+.proj-footer-note {
+  font-family: var(--f-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 440px;
+}
+
+#faq { border-top: 1px solid var(--border); }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 64px;
+}
+.faq-item {
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+.faq-item:hover, .faq-item.open {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--f-hero);
+  font-size: 28px;
+  color: var(--text);
+}
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--text);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 700px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease-out-expo), margin-top 0.4s var(--ease-out-expo);
+}
+.faq-item.open .faq-a { max-height: 300px; margin-top: 16px; }
+
+#cta {
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+#cta::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.cta-inner {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 40px 100px -20px var(--violet-glow), inset 0 0 40px rgba(139, 92, 246, 0.05);
+  position: relative;
+  z-index: 1;
+}
+.cta-title {
+  font-family: var(--f-hero);
+  font-size: clamp(48px, 8vw, 100px);
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+.cta-sub {
+  font-size: 18px;
+  color: var(--text-2);
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+.cta-sub strong { color: var(--text); font-weight: 700; }
+.cta-feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 24px;
+  margin-bottom: 32px;
+}
+.cta-feature-list span {
+  font-family: var(--f-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.cta-btns {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.cta-note {
+  font-family: var(--f-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+#contacto { border-top: 1px solid var(--border); background: var(--bg-1); }
+.c-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+.c-title {
+  font-family: var(--f-hero);
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+.c-body { font-size: 16px; color: var(--text-2); line-height: 1.7; margin-bottom: 40px; }
+.c-links { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.c-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.c-link svg { color: var(--violet); flex-shrink: 0; width: 20px; height: 20px; }
+.c-link a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.c-guarantee {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.05);
+}
+.c-guarantee p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+.c-guarantee strong { color: var(--text); font-weight: 700; }
+
+.form { display: flex; flex-direction: column; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+  font-family: var(--f-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.field input, .field textarea, .field select {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 16px;
+  font-size: 16px;
+  outline: none;
+  resize: none;
+  width: 100%;
+  appearance: none;
+  transition: box-shadow 0.2s;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+}
+.field input.err, .field textarea.err { border-color: var(--red); box-shadow: 0 0 20px rgba(251, 113, 133, 0.15); }
+.ferr { font-family: var(--f-ui); font-size: 11px; font-weight: 600; color: var(--red); display: none; }
+.ferr.show { display: block; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.f-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 16px; }
+.f-note { font-family: var(--f-ui); font-size: 11px; font-weight: 600; color: var(--text-3); }
+
+@media (max-width: 960px) {
+  .prob-grid, .c-grid { grid-template-columns: 1fr; gap: 60px; }
+  .proj-preview-grid { grid-template-columns: 1fr 1fr; }
+  .svc-header, .proj-intro { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .hero-stats { flex-direction: column; }
+  .hstat { border-right: none; border-bottom: 2px solid var(--border); }
+  .proj-preview-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .svc-row { grid-template-columns: 1fr; gap: 16px; }
+}
+</style>

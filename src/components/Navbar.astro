@@ -1,0 +1,197 @@
+---
+---
+<nav id="nav">
+  <div class="wrap">
+    <div class="nav-i">
+      <a href="/" class="logo">pisculichi<em>.</em>labs<span class="cur"></span></a>
+      <ul class="nav-links">
+        <li><a href="/#problema">El problema</a></li>
+        <li><a href="/#servicios">Servicios</a></li>
+        <li><a href="/proyectos">Proyectos</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+      </ul>
+      <a href="/#contacto" class="nav-cta">Hablemos &#x2192;</a>
+      <button class="nav-ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="m-nav" id="mNav">
+  <button class="m-close" id="mClose">&#x2715;</button>
+  <a href="/#problema" class="ml">El problema</a>
+  <a href="/#servicios" class="ml">Servicios</a>
+  <a href="/proyectos" class="ml">Proyectos</a>
+  <a href="/#faq" class="ml">FAQ</a>
+  <a href="/#contacto" class="ml">Contacto</a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 30), {passive: true});
+  }
+
+  const ham = document.getElementById('ham');
+  const mNav = document.getElementById('mNav');
+  const mClose = document.getElementById('mClose');
+
+  if (ham && mNav) {
+    ham.addEventListener('click', () => mNav.classList.add('open'));
+  }
+  if (mClose && mNav) {
+    mClose.addEventListener('click', () => mNav.classList.remove('open'));
+  }
+
+  document.querySelectorAll('.ml').forEach(a => {
+    a.addEventListener('click', () => {
+      if (mNav) mNav.classList.remove('open')
+    });
+  });
+</script>
+
+<style>
+  /* NAV */
+  #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 20px 0;
+    border-bottom: 2px solid transparent;
+    transition: background 0.3s, border-color 0.3s, padding 0.3s;
+  }
+  #nav.stuck {
+    background: var(--bg);
+    border-color: var(--border);
+    padding: 16px 0;
+  }
+  .nav-i {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--f-hero);
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .logo em {
+    font-style: normal;
+    color: var(--violet);
+  }
+  .logo .cur {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background: var(--green);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--f-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    transition: color .2s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--text);
+  }
+  
+  .nav-cta {
+    font-family: var(--f-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    background: var(--bg);
+    color: var(--text);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s var(--ease-out-expo), background 0.3s;
+    display: inline-flex;
+    text-decoration: none;
+    align-items: center;
+  }
+  .nav-cta:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 var(--border);
+    background: var(--border);
+    color: var(--bg);
+  }
+  
+  .nav-ham {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-ham span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+  }
+  
+  .m-nav {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: var(--bg-1);
+    z-index: 300;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px) scale(0.98);
+    transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+  }
+  .m-nav.open { 
+    opacity: 1; 
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .m-nav a {
+    font-family: var(--f-hero);
+    font-size: 48px;
+    letter-spacing: -0.01em;
+    transition: color .2s;
+    color: var(--text);
+  }
+  .m-nav a:hover { color: var(--violet); text-decoration: underline; text-underline-offset: 4px; }
+  .m-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .m-close:hover { transform: scale(1.1); }
+
+  @media (max-width: 960px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-ham { display: flex; }
+  }
+</style>
