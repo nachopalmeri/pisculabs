@@ -20,7 +20,7 @@ Desacoplamos completamente "qué mostramos" (Los Datos) de "cómo se ve" (La Int
 ```
 
 ### ⚖️ Trade-offs
-- ✅ **Ganamos**: Extrema mantenibilidad. Si deseas mutar un precio o agregar un proyecto, solo tocas el archivo `proyectos.json`. No tocas HTML.
+- ✅ **Ganamos**: Extrema mantenibilidad. Si deseas mutar un dato o agregar un proyecto, solo tocas el archivo `proyectos.json`. No tocas HTML.
 - ✅ **Ganamos**: Reducción drástica del tamaño de código duplicado.
 - ⚠️ **Sacrificamos**: Añadimos una capa de abstracción técnica. Ahora hay que entender qué es un *Array.map* para entender cómo se dibujan las tarjetas.
 

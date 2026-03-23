@@ -18,7 +18,7 @@ import proyectosData from '../data/proyectos.json';
         Volver al inicio
       </a>
       <h1 class="sr d1">Proyectos<br/><span>reales.</span></h1>
-      <p class="sr d2">Software que construimos y está en uso hoy. Con el problema que resolvió, el resultado que obtuvo y lo que costaría armar algo similar para vos.</p>
+      <p class="sr d2">Software que construimos y está en uso hoy. Con el problema que resolvió, el resultado que obtuvo y lo que incluye cada solución.</p>
     </div>
   </div>
 
@@ -40,22 +40,6 @@ import proyectosData from '../data/proyectos.json';
           </div>
           <div class="sr d1">
             <div class="proj-meta">
-              <div class="meta-row"><span class="meta-icon">&#x1F4B0;</span>
-                <div>
-                  <div class="meta-label">Precio referencial</div>
-                  {Object.entries(proj.prices).map(([key, value], index) => (
-                      <div class={index === 0 ? "meta-val green" : "meta-val"} style={index !== 0 ? "margin-top:4px" : ""}>
-                         {key === 'group' && 'Para un grupo/club: '}
-                         {key === 'db' && 'Con base de datos: '}
-                         {key === 'other' && 'Para otra persona: '}
-                         {key === 'multi' && 'Multi-usuario/local: '}
-                         {key === 'base' && 'Desde: '}
-                         {key === 'custom' && 'A medida/Custom: '}
-                         {value}
-                      </div>
-                  ))}
-                </div>
-              </div>
               <div class="meta-row"><span class="meta-icon">&#x23F1;&#xFE0F;</span>
                 <div>
                   <div class="meta-label">Tiempo de desarrollo</div>

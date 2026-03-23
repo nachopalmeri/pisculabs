@@ -8,14 +8,10 @@
     "problem": "Todos los viernes: alguien tenía que calcular los puntos a mano, manejar el pozo, ver quién ganó. Siempre era el mismo personaje el que terminaba haciendo todo y siempre había alguna discusión sobre si estaba bien calculado.",
     "result": "Cada uno carga sus pronósticos antes del partido. La tabla se arma sola con los resultados reales. El ganador lo sabe al instante. Cero cálculos manuales.",
     "link": "https://fulbotracker.vercel.app/",
-    "prices": {
-      "group": "~$70.000",
-      "db": "~$120.000"
-    },
     "devTime": "4-8 horas (versión base)",
     "stack": ["React", "Vercel", "LocalStorage"],
     "previewDesc": "App para la quiniela con los pibes. Pronósticos, tabla automática y pozo sin calculadora.",
-    "previewCost": "desde ~$70.000",
+
     "imageUrl": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=600&h=400&fit=crop"
   },
   {
@@ -27,14 +23,10 @@
     "problem": "Buscar trabajo revisando portales todos los días consume tiempo real. Las mejores ofertas aparecen y desaparecen rápido.",
     "result": "El bot scrapea los portales, deduplica las ofertas y te manda por Telegram solo lo que coincide con tu perfil.",
     "link": "https://job--bot.vercel.app/",
-    "prices": {
-      "base": "~$250.000",
-      "multi": "~$350.000"
-    },
     "devTime": "30-50 horas",
     "stack": ["Python", "Telegram API", "Railway", "Scraping"],
     "previewDesc": "Bot que monitorea portales de empleo y te avisa por Telegram cuando aparece algo que te interesa.",
-    "previewCost": "desde ~$250.000",
+
     "imageUrl": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&h=400&fit=crop",
     "hideInHome": true
   },
@@ -47,14 +39,9 @@
     "problem": "Una fiambrera sin sistema obliga al dueño a atender el teléfono constantemente. Los clientes no saben qué hay disponible.",
     "result": "El cliente entra al sitio, arma su pedido y lo confirma por WhatsApp con todo el detalle ya armado.",
     "link": "https://comidadebarrio.vercel.app/",
-    "prices": {
-      "base": "desde ~$300.000",
-      "combo_pos": "~$1.000.000"
-    },
     "devTime": "20-35 horas",
     "stack": ["React", "WhatsApp API", "Vercel"],
     "previewDesc": "Catálogo con fotos, carrito simple y pedido confirmado por WhatsApp. Para cualquier local.",
-    "previewCost": "desde ~$300.000 (Combo POS: ~$1M)",
     "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600&h=400&fit=crop"
   },
   {
@@ -66,13 +53,9 @@
     "problem": "Hay herramientas que usás todos los días pero están dispersas en distintos sitios con publicidad.",
     "result": "Una sola URL con todas tus utilidades personales, rápidas, sin publicidad y hechas a medida.",
     "link": "https://polytools-omega.vercel.app/",
-    "prices": {
-      "custom": "~$300.000"
-    },
     "devTime": "15-30 horas",
     "stack": ["JavaScript", "React", "Vercel"],
     "previewDesc": "Calculadoras, conversores y utilidades en un solo lugar.",
-    "previewCost": "desde ~$300.000",
     "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&h=400&fit=crop",
     "hideInHome": true
   },
@@ -85,14 +68,9 @@
     "problem": "El dueño no podía saber qué pasaba en cada sucursal sin llamar a los encargados.",
     "result": "Dashboard centralizado donde el dueño ve todo en tiempo real.",
     "link": "https://franqui-ya.vercel.app/",
-    "prices": {
-      "base": "desde ~$400.000",
-      "custom": "a cotizar"
-    },
     "devTime": "80-120 horas",
     "stack": ["Next.js", "PostgreSQL", "Supabase", "Vercel"],
     "previewDesc": "Dashboard multi-sucursal en tiempo real. El dueño sabe todo sin llamar.",
-    "previewCost": "desde ~$400.000",
     "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&h=400&fit=crop"
   }
 ]
