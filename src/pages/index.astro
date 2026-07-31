@@ -205,10 +205,9 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
   
           <div class="hp" aria-hidden="true" style="opacity: 0; position: absolute; top: -9999px"><label>No rellenar <input type="text" name="_hp_website" tabindex="-1" autocomplete="off"/></label></div>
           <div class="f-foot">
-            <button type="submit" class="btn btn-v btn-big" id="fBtn">Mandar consulta <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-            <span class="f-note">O escribínos por WhatsApp &#x2191;</span>
+            <button type="submit" class="btn btn-v btn-big" id="fBtn">Seguir por WhatsApp <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+            <span class="f-note">Se abre un mensaje con tu consulta ya armada.</span>
           </div>
-          <div class="f-ok" id="fOk" aria-live="polite"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Consulta recibida. Te escribo pronto.</div>
         </form>
       </div>
     </div></div>
@@ -226,11 +225,9 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
     })
   });
 
-  const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID || 'TU_FORM_ID';
-  const FORM_READY = FORMSPREE_ID !== 'TU_FORM_ID';
+  const WHATSAPP_NUMBER = '5491155090832';
   const form = document.getElementById('cForm');
   const fBtn = document.getElementById('fBtn');
-  const fOk = document.getElementById('fOk');
   
   function chk(id, eId, fn){
     const el = document.getElementById(id);
@@ -242,7 +239,7 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
     return ok;
   }
   
-  if (form && fBtn && fOk) {
+  if (form && fBtn) {
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const honeypot = document.querySelector('[name="_hp_website"]');
@@ -254,37 +251,27 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
       
       if(!v1 || !v2 || !v3) return;
       
-      fBtn.disabled = true;
-      fBtn.textContent = 'Enviando…';
-      
       const payload = {
         name: document.getElementById('iNombre').value,
         email: document.getElementById('iEmail').value,
-        type: document.getElementById('iTipo').value,
+        type: document.getElementById('iTipo').selectedOptions[0]?.text || 'No especificado',
         message: document.getElementById('iMsg').value
       };
-      
-      if(FORM_READY){
-        try{
-          const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify(payload)
-          });
-          if(!res.ok) throw new Error();
-        } catch {
-          fBtn.disabled = false;
-          fBtn.textContent = 'Reintentar';
-          return;
-        }
-      } else {
-        console.log('[dev]', payload);
-        await new Promise(r => setTimeout(r, 600));
-      }
-      
-      form.reset();
-      fBtn.style.display = 'none';
-      fOk.classList.add('show');
+
+      const whatsappMessage = [
+        'Hola, vengo desde Pisculichi Labs y quiero consultar.',
+        '',
+        `Nombre: ${payload.name}`,
+        `Email: ${payload.email}`,
+        `Necesito: ${payload.type}`,
+        `Detalle: ${payload.message}`
+      ].join('\n');
+
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
+        '_blank',
+        'noopener'
+      );
     });
     
     ['iNombre', 'iEmail', 'iMsg'].forEach(id => {
