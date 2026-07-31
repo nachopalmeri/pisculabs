@@ -1,5 +1,20 @@
 [
   {
+    "id": "defes",
+    "categories": ["Propuesta", "Gastronomía", "Landing"],
+    "titlePrefix": "Defes",
+    "titleHighlight": " Online",
+    "tagline": "Propuesta de landing para que un negocio gastronómico aparezca en Google, muestre sus combos y convierta visitas en pedidos por WhatsApp.",
+    "problem": "Un negocio puede tener un producto que la gente recomienda, pero perder búsquedas y pedidos si no aparece en Google ni cuenta con una experiencia clara para mostrar su oferta online.",
+    "result": "Una propuesta navegable con dos direcciones visuales para ordenar la presencia digital: información esencial, combos y un recorrido directo hacia WhatsApp.",
+    "link": "/defes/",
+    "linkLabel": "Ver propuesta",
+    "devTime": "Propuesta y prototipo",
+    "stack": ["HTML", "CSS", "UX", "WhatsApp"],
+    "previewDesc": "Landing propuesta para gastronomía: Google, combos y pedidos por WhatsApp.",
+    "imageUrl": "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=600&h=400&fit=crop"
+  },
+  {
     "id": "fulbotracker",
     "categories": ["Personal", "Deportes", "2024"],
     "titlePrefix": "Fulbo",

@@ -6,10 +6,11 @@ interface Props {
   nameHighlight: string;
   desc: string;
   link: string;
+  linkLabel?: string;
   imageUrl?: string;
 }
 
-const { id, category, namePrefix, nameHighlight, desc, link, imageUrl } = Astro.props;
+const { id, category, namePrefix, nameHighlight, desc, link, linkLabel = 'Ver demo en vivo', imageUrl } = Astro.props;
 ---
 
 <div class="proj-card sr" data-tilt>
@@ -22,7 +23,7 @@ const { id, category, namePrefix, nameHighlight, desc, link, imageUrl } = Astro.
     <div class="proj-card-cat">{category}</div>
     <h3 class="proj-card-name">{namePrefix}<span>{nameHighlight}</span></h3>
     <p class="proj-card-desc">{desc}</p>
-    <a class="proj-card-link" href={link} target="_blank" rel="noopener">Ver demo en vivo</a>
+    <a class="proj-card-link" href={link} target="_blank" rel="noopener">{linkLabel}</a>
   </div>
 </div>
 

@@ -120,8 +120,8 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
       <div class="proj-intro sr">
         <div>
           <div class="eyebrow">Mirá lo que ya construimos</div>
-          <h2 class="s-title">Proyectos reales.<br/>Tocá y probálos hoy.</h2>
-          <p class="proj-instruct" style="color: var(--text-2); margin-top: 16px; font-size: 18px;">Hay productos propios, demos y prototipos. <strong style="color: var(--green);">Hacé clic en "Ver demo en vivo"</strong> para probar qué hace cada uno.</p>
+          <h2 class="s-title">Proyectos, demos<br/>y propuestas.</h2>
+          <p class="proj-instruct" style="color: var(--text-2); margin-top: 16px; font-size: 18px;">Hay productos propios, demos, prototipos y propuestas de landing. <strong style="color: var(--green);">Hacé clic para recorrerlos</strong> y entender qué resuelve cada uno.</p>
         </div>
         <a href="/proyectos" class="btn btn-o">Ver todos los proyectos &#x2192;</a>
       </div>
@@ -134,6 +134,7 @@ const homeProjects = proyectosData.filter(p => !p.hideInHome).slice(0, 3);
             nameHighlight={proj.titleHighlight}
             desc={proj.previewDesc}
             link={proj.link}
+            linkLabel={proj.linkLabel}
             imageUrl={proj.imageUrl}
           />
         ))}

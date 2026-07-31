@@ -17,8 +17,8 @@ import proyectosData from '../data/proyectos.json';
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         Volver al inicio
       </a>
-      <h1 class="sr d1">Proyectos<br/><span>reales.</span></h1>
-      <p class="sr d2">Software que construimos y está en uso hoy. Con el problema que resolvió, el resultado que obtuvo y lo que incluye cada solución.</p>
+      <h1 class="sr d1">Proyectos,<br/><span>demos y propuestas.</span></h1>
+      <p class="sr d2">Productos propios, demos y propuestas de interfaz. Cada entrada explica el problema, el enfoque y la tecnología involucrada, sin inventar resultados.</p>
     </div>
   </div>
 
@@ -34,7 +34,7 @@ import proyectosData from '../data/proyectos.json';
             <p class="proj-problem-text">{proj.problem}</p>
             <div class="proj-result">{proj.result}</div>
             <div class="proj-actions">
-              <a href={proj.link} target="_blank" rel="noopener" class="btn btn-v">Ver demo en vivo &#x2197;</a>
+              <a href={proj.link} target="_blank" rel="noopener" class="btn btn-v">{proj.linkLabel || 'Ver demo en vivo'} &#x2197;</a>
               <a href="/#contacto" class="btn btn-o">Quiero un sistema así</a>
             </div>
           </div>
