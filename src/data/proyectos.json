@@ -15,6 +15,21 @@
     "imageUrl": "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=600&h=400&fit=crop"
   },
   {
+    "id": "dulces-creaciones",
+    "categories": ["Cliente", "Gastronomía", "Landing"],
+    "titlePrefix": "Dulces",
+    "titleHighlight": " Creaciones",
+    "tagline": "Sitio de pastelería artesanal pensado para mostrar trabajos, responder dudas y convertir una visita en una consulta por WhatsApp.",
+    "problem": "Un negocio de tortas personalizadas necesita que su catálogo, la zona de entrega y el proceso de pedido se entiendan rápido desde el celular.",
+    "result": "Una experiencia editorial con galería, rellenos, preguntas frecuentes, cobertura local y recorridos de consulta por WhatsApp.",
+    "link": "https://dulcescreaciones.vercel.app/",
+    "linkLabel": "Ver sitio publicado",
+    "devTime": "Landing y optimización continua",
+    "stack": ["HTML", "CSS", "JavaScript", "SEO local", "WhatsApp"],
+    "previewDesc": "Pastelería artesanal: catálogo, zona de entrega y pedidos por WhatsApp.",
+    "imageUrl": "https://dulcescreaciones.vercel.app/images/torta-minimalista-romantica-hero.webp"
+  },
+  {
     "id": "fulbotracker",
     "categories": ["Personal", "Deportes", "2024"],
     "titlePrefix": "Fulbo",
